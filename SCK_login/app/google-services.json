@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "94983308025",
+    "project_id": "sckeys-e3e5f",
+    "storage_bucket": "sckeys-e3e5f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:94983308025:android:bc9301f162bbff19dcd828",
+        "android_client_info": {
+          "package_name": "com.example.sck_login"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "94983308025-ai71qtehmvfva9pu620bon96f08ts52l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjcl_xkp9xoCkv-3E7ljD_dI4kfqo6oNA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "94983308025-ai71qtehmvfva9pu620bon96f08ts52l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
