@@ -37,6 +37,7 @@ public class Home extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ArrayList<key> sports;
     private keys keys;
+    myadapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,67 +51,94 @@ public class Home extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         sports = new ArrayList<>();
 
-        keys = new keys(this, sports);
-        recyclerView.setAdapter(keys);
-        intitiazationData();
+        FirebaseRecyclerOptions<key> options =
+                new FirebaseRecyclerOptions.Builder<key>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("keyword"), key.class)
+                        .build();
 
+        adapter=new myadapter(options);
+        recyclerView.setAdapter(adapter);
+
+//        keys = new keys(this, sports);
+//        recyclerView.setAdapter(keys);
+//        intitiazationData();
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter.stopListening();
     }
 
     //fetch data
-    private void intitiazationData() {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("keyword");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                sports.clear();
-                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                    key infos = snapshot1.getValue(key.class);
-                    sports.add(infos);
-                }
-                keys.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-
-    }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu)
-//    {
-//        getMenuInflater().inflate(R.menu.menu,menu);
-//        MenuItem item = menu.findItem(R.id.search);
-//
-//        SearchView searchView =(SearchView)item.getActionView();
-//
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//    private void intitiazationData() {
+//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("keyword");
+//        reference.addValueEventListener(new ValueEventListener() {
 //            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                processsearch(query);
-//                return false;
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                Log.d("try",reference.toString());
+//                sports.clear();
+//                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+//                    key infos = snapshot1.getValue(key.class);
+//                    sports.add(infos);
+//                }
+//                keys.notifyDataSetChanged();
 //            }
 //
 //            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                processsearch(query);
-//                return false;
+//            public void onCancelled(@NonNull DatabaseError error) {
 //            }
-//
 //        });
-//        return super.onCreateOptionsMenu(menu);
-//    }
 //
-//    private void processsearch(String query) {
-//        FirebaseRecyclerOptions<key> options = new FirebaseRecyclerOptions.Builder<key>().setQuery(FirebaseDatabase.getInstance().getReference().child("keyword"), key.class).build();
-//        keys = new keys(options);
-//        keys.startListening();
-//        recyclerView.setAdapter(keys);
 //    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        MenuItem item = menu.findItem(R.id.search);
 
-    //logout
+        SearchView searchView =(SearchView)item.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                processsearch(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                processsearch(newText);
+                return false;
+            }
+
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
+//
+private void processsearch(String s)
+{
+    FirebaseRecyclerOptions<key> options =
+            new FirebaseRecyclerOptions.Builder<key>()
+                    .setQuery(FirebaseDatabase.getInstance().getReference().child("keyword").orderByChild("keyword").startAt(s).endAt(s+"\uf8ff"), key.class)
+                    .build();
+
+    adapter=new myadapter(options);
+    adapter.startListening();
+    recyclerView.setAdapter(adapter);
+
+}
+
+
+//    logout
 //    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 //        switch (item.getItemId()) {
 //            case R.id.exit:
