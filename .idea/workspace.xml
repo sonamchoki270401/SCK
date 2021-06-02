@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="07b36747-699f-44c1-9cd6-dc61549e09cc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/SCK_login/app/src/main/java/com/example/sck_login/myadapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SCK_login/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SCK_login/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SCK_login/app/src/main/java/com/example/sck_login/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/SCK_login/app/src/main/java/com/example/sck_login/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/SCK.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SCK.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
