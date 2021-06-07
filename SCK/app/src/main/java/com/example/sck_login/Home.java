@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -86,7 +87,6 @@ public class Home extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu, menu);
         MenuItem item = menu.findItem(R.id.search);
         SearchView searchView = (SearchView) item.getActionView();
-        Log.d("img", "onCreateOptionsMenu");
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -134,23 +134,15 @@ public class Home extends AppCompatActivity {
 
     }
 
-    /*public void Search() {
-        SearchView searchView = findViewById(R.id.search);
+    public void about(MenuItem item) {
+        Intent intent = new Intent(this, About.class);
+        startActivity(intent);
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                processsearch(query);
-                return false;
-            }
+    }
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                processsearch(newText);
-                return false;
-            }
 
-        });
-    }*/
+    public void Report(View view) {
 
+
+    }
 }

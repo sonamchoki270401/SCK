@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SCK_login">
+        <activity android:name=".About"></activity>
         <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,14 +19,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddPost" />
+        <activity
+            android:name=".AddPost"
+            android:parentActivityName=".Home">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Home" />
+        </activity>
         <activity android:name=".Home" />
         <activity android:name=".Registration" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.SCK_login.NoActionBar">
-
-        </activity>
+            android:theme="@style/Theme.SCK_login.NoActionBar" />
     </application>
 
 </manifest>

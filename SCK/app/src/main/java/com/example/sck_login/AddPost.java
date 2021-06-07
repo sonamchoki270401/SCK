@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.util.EventLogTags;
 import android.view.View;
@@ -36,7 +37,8 @@ public class AddPost extends AppCompatActivity {
         Keyword = findViewById(R.id.keyword);
         Description = findViewById(R.id.description);
         Post = findViewById(R.id.post);
-
+      //  Keyword.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
+        Description.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
         fAuth = FirebaseAuth.getInstance();
     }
 
@@ -61,16 +63,21 @@ public class AddPost extends AppCompatActivity {
 
     public void add(String keyword, String description) {
         DatabaseReference dR = FirebaseDatabase.getInstance().getReference("keyword").child(keyword);
-        key obj = new key(keyword, description);
+        key obj = new key(keyword, description, 0);
         dR.setValue(obj);
         Toast.makeText(this, "Successfully added", Toast.LENGTH_SHORT).show();
 
     }
 
-    class key {
+    public void logo(View view) {
+        Intent intent = new Intent(this, Home.class);
+        startActivity(intent);
+    }
+
+    /*class key {
         public String keyword, description;
 
-        public key() { }
+        public key(String keyword, String description, int i) { }
 
         public key(String keyword, String description) {
             this.keyword = keyword;
@@ -93,7 +100,7 @@ public class AddPost extends AppCompatActivity {
             return description;
         }
 
-    }
+    }*/
 
 
 }
